@@ -4,20 +4,6 @@ provider "aws" {
   secret_key = var.secret_key  # Change this to your desired Secret Key
 }
 
-variable "cluster_name" {
-  description = "Name of the EKS cluster"
-  type        = string
-}
-
-variable "desired_capacity" {
-  description = "Desired number of worker nodes"
-  type        = number
-  validation {
-    condition     = var.desired_capacity > 0 && var.desired_capacity <= 10
-    error_message = "Desired capacity must be between 1 and 10"
-  }
-}
-
 module "eks" {
   source          = "terraform-aws-modules/eks/aws"
   cluster_name    = var.cluster_name
